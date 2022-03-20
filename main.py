@@ -7,6 +7,7 @@ if __name__ == "__main__":
     boardLength = 8
     gen_size = 10
     board = Board(boardLength)
+    mutation_rate = 0.1
 
     generation = initGen(boardLength, gen_size)
     print(generation)
@@ -19,7 +20,7 @@ if __name__ == "__main__":
     print(fitnessMatrix)
     
     parents = selection(generation, fitnessMatrix, max)
-    children = crossover(parents)
+    children = crossover(parents, mutation_rate, boardLength)
     fitness_children = fitness(children, max)
     generation, fitness_matrix = population_reduction(children, fitness_children, gen_size)
     print(generation)

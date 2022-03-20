@@ -53,7 +53,7 @@ def choices_no_repetition(generation, weights, k=1):
 # Function to perform crossover on the parents.
 # Since crossover results in two new individuals, 
 # the returned list is twice the size of initial
-def crossover(parents):
+def crossover(parents, mutation_rate, board_len):
     children = []
     pairs = []
 
@@ -77,6 +77,10 @@ def crossover(parents):
         children.append(p1_chunk_1+p2_chunk_2)
         children.append(p1_chunk_2+p2_chunk_1)
 
+    # Mutation
+    for i, child in enumerate(children):
+        children[i] = mutation(child, mutation_rate, board_len)
+    
     return children
 
 # Function to lower population count to initial generation size
@@ -98,5 +102,13 @@ def population_reduction(generation, fitness, gen_size):
 
 # Function to mutate individuals
 # Returns a mutated individual
-def mutation(individual, mutation_rate):
-    pass
+def mutation(individual, mutation_rate, board_len):
+    for i in range(len(individual)):
+        # Decision whether to change the placement of queen
+        if (random.random()<mutation_rate):
+            # Decision where the queen will be place
+            new_val = random.randint(0,board_len-1)
+            # Mutates the value
+            individual[i] = new_val
+    
+    return individual

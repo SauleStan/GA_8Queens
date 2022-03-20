@@ -17,6 +17,9 @@ def fitness(generation, nonAttackingMax):
     return fitnessMatrix
 
 # Function to calculate non-attacking pairs value of an individual state
+# There can't be any hits on X due to how we represent the state of a board:
+# 1D array of positions
+# Index represents the row number, the value represents column number.
 def fitnessOfIndividual(individual):
     hits = 0
     # Hits on Y
@@ -24,7 +27,6 @@ def fitnessOfIndividual(individual):
         for j in range(i+1, len(individual)):
             if individual[i] == individual[j]:
                 hits+=1
-    # No hits on X due to how we initiate the state?
     # Diagonal check
     diagHits = diagonalHits(individual)
     hits += diagHits

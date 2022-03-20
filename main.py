@@ -1,5 +1,6 @@
 from board import Board
 from Queens import *
+from Fitness import *
 
 if __name__ == "__main__":
     boardLength = 8
@@ -9,7 +10,6 @@ if __name__ == "__main__":
     # generation = [[3, 2, 4, 1, 2, 3, 5, 1]]
     print(generation)
     print("\n")
-    board.displayBoard(generation[0])
 
     # Get max amount of non-attacking pairs of queens
     max = maxFitness(boardLength)
@@ -17,3 +17,5 @@ if __name__ == "__main__":
     # Provide the current generation and max possible fitness score
     fitnessMatrix = fitness(generation, max)
     print(fitnessMatrix)
+
+    print(selection(generation, fitnessMatrix, max))

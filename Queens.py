@@ -1,10 +1,6 @@
 from random import randrange
 import random
 
-from torch import chunk
-
-from Fitness import fitness
-
 # Initializes random first generation
 # board_length is for the size of an individual
 # gen_size is for the amount of individuals in one generation

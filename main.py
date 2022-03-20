@@ -18,4 +18,6 @@ if __name__ == "__main__":
     fitnessMatrix = fitness(generation, max)
     print(fitnessMatrix)
 
-    print(selection(generation, fitnessMatrix, max))
+    parents = selection(generation, fitnessMatrix, max)
+    print(crossover(parents))
+    

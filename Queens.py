@@ -3,6 +3,8 @@ import random
 
 from torch import chunk
 
+from Fitness import fitness
+
 # Initializes random first generation
 # board_length is for the size of an individual
 # gen_size is for the amount of individuals in one generation
@@ -80,8 +82,19 @@ def crossover(parents):
 # Function to lower population count to initial generation size
 # This is to preserve memory
 # Returns the best fit children
-def population_reduction(generation):
-    pass
+def population_reduction(generation, fitness, gen_size):
+    # Merge lists
+    gen_fit = []
+    for i, individual in enumerate(generation):
+        gen_fit.append([individual, fitness[i]])
+    
+    # Sort the list based on fitness score
+    sorted_gen_fit = sorted(gen_fit, key = lambda x: x[1],reverse=True)
+
+    culled_gen = sorted_gen_fit[:gen_size:]
+    
+    # Splits culled_gen into generation and fitness list and returns them
+    return map(list, zip(*culled_gen))
 
 # Function to mutate individuals
 # Returns a mutated individual

@@ -24,8 +24,13 @@ def selection(generation, fitness, max_fitness):
     for score in fitness:
         probabilities.append((score*100)/max_fitness)
 
-    # Pick half of the population for crossover    
-    parent_count = int(len(generation)/2)
+    # Pick half of the population for crossover if at least 10 individuals are present
+    parent_count = 0
+    if (len(generation) >= 10):    
+        parent_count = int(len(generation)/2)
+    else:
+        parent_count = len(generation)
+    
     # Select k parents based on probability of their occurence
     parents = choices_no_repetition(generation, probabilities, k=parent_count)
     

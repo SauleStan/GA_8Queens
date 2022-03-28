@@ -1,5 +1,5 @@
 from Board import Board
-from queens import *
+from Queens import *
 from Fitness import *
 
 if __name__ == "__main__":
@@ -38,7 +38,6 @@ if __name__ == "__main__":
             children = crossover(parents, mutation_rate, board_length)
             fitness_children = fitness(children, max_fit)
             generation, fitness_matrix = population_reduction(children, fitness_children, gen_size)
-
             if(max_fit in fitness_matrix):
                 solution = generation[fitness_matrix.index(max_fit)]
                 # Set best performance
